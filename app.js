@@ -1,6 +1,6 @@
 const historyList = document.getElementById('history-list');
 
-const map = L.map('map').setView([20, 0], 2);  
+const map = L.map('map').setView([20, 0], 2); 
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -16,6 +16,7 @@ function addToHistory(flightNumber) {
     historyList.appendChild(listItem);
 }
 
+
 function notifyUser(message) {
     if (Notification.permission === 'granted') {
         new Notification('Flight Tracker', { body: message });
@@ -28,7 +29,7 @@ async function trackFlight() {
 
     addToHistory(flightNumber);
 
-    const apiKey = 'bd33b4fad6cda564c39814354d804c06'; 
+    const apiKey = 'bd33b4fad6cda564c39814354d804c06';
     const url = `http://api.aviationstack.com/v1/flights?access_key=${apiKey}&flight_iata=${flightNumber}`;
 
     try {
@@ -58,7 +59,6 @@ function displayFlightInfo(data) {
             </div>
         `;
 
-        // Update map to show flight route
         const departureCoords = [flight.departure.latitude, flight.departure.longitude];
         const arrivalCoords = [flight.arrival.latitude, flight.arrival.longitude];
 
