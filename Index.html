@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Tracker & Finder</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Flight Tracker & Cheap Flights Finder</h1>
+    </header>
+    <section id="flight-tracker">
+        <h2>Track Your Flight</h2>
+        <input type="text" id="flight-number" placeholder="Enter Flight Number">
+        <button onclick="trackFlight()">Track Flight</button>
+        <div id="flight-info"></div>
+    </section>
+
+    <section id="cheap-flights">
+        <h2>Find Cheap Flights</h2>
+        <input type="text" id="origin" placeholder="From">
+        <input type="text" id="destination" placeholder="To">
+        <input type="date" id="departure-date">
+        <button onclick="findCheapFlights()">Search</button>
+        <div id="cheap-flights-results"></div>
+    </section>
+
+    <section id="ticket-tracker">
+        <h2>Your Tickets</h2>
+        <input type="text" id="ticket-number" placeholder="Enter Ticket Number">
+        <button onclick="trackTicket()">Track Ticket</button>
+        <div id="ticket-info"></div>
+    </section>
+
+    <section id="aircraft-info">
+        <h2>Aircraft Information</h2>
+        <input type="text" id="aircraft-reg" placeholder="Enter Aircraft Registration">
+        <button onclick="getAircraftInfo()">Get Info</button>
+        <div id="aircraft-details"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Flight Tracker. All rights reserved.</p>
+    </footer>
+</body>
+</html>
