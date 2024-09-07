@@ -1,46 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flight Tracker & Finder</title>
+    <title>Flight Tracker, Cheap Flights, Ticket & Aircraft Info</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="scripts.js" defer></script>
 </head>
 <body>
+
     <header>
-        <h1>Flight Tracker & Cheap Flights Finder</h1>
+        <h1>Flight Information Center</h1>
     </header>
-    <section id="flight-tracker">
-        <h2>Track Your Flight</h2>
+
+    <section>
+        <h2>Flight Tracker</h2>
         <input type="text" id="flight-number" placeholder="Enter Flight Number">
         <button onclick="trackFlight()">Track Flight</button>
         <div id="flight-info"></div>
     </section>
 
-    <section id="cheap-flights">
-        <h2>Find Cheap Flights</h2>
-        <input type="text" id="origin" placeholder="From">
-        <input type="text" id="destination" placeholder="To">
+    <section>
+        <h2>Cheap Flight Finder</h2>
+        <input type="text" id="origin" placeholder="Enter Origin Airport Code">
+        <input type="text" id="destination" placeholder="Enter Destination Airport Code">
         <input type="date" id="departure-date">
-        <button onclick="findCheapFlights()">Search</button>
+        <button onclick="findCheapFlights()">Find Flights</button>
         <div id="cheap-flights-results"></div>
     </section>
 
-    <section id="ticket-tracker">
-        <h2>Your Tickets</h2>
+    <section>
+        <h2>Ticket Tracker</h2>
         <input type="text" id="ticket-number" placeholder="Enter Ticket Number">
         <button onclick="trackTicket()">Track Ticket</button>
         <div id="ticket-info"></div>
     </section>
 
-    <section id="aircraft-info">
+    <section>
         <h2>Aircraft Information</h2>
         <input type="text" id="aircraft-reg" placeholder="Enter Aircraft Registration">
-        <button onclick="getAircraftInfo()">Get Info</button>
+        <button onclick="getAircraftInfo()">Get Aircraft Info</button>
         <div id="aircraft-details"></div>
     </section>
+
+    <footer>
+        <p>Flight Information Center &copy; 2024</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
 
     <footer>
         <p>&copy; 2024 Flight Tracker. All rights reserved.</p>
