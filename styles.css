@@ -1,75 +1,46 @@
-* {
+html, body {
+    height: 100%;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f0f4f8;
-    color: #333;
-    line-height: 1.6;
+    overflow: hidden;
 }
 
 header {
     background-color: #008cba;
     color: white;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
 }
 
 section {
-    margin: 20px auto;
     padding: 20px;
-    background-color: white;
-    width: 90%;
-    max-width: 1000px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: #008cba;
+#mapContainer {
+    width: 100%;
+    height: 80vh;
 }
 
 input, button {
-    padding: 15px;
-    margin: 10px 0;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 400px;
-    font-size: 1rem;
+    margin: 5px;
 }
 
 button {
     background-color: #008cba;
     color: white;
     border: none;
+    padding: 10px 20px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    border-radius: 5px;
 }
 
 button:hover {
     background-color: #005f73;
-    transform: scale(1.05);
 }
 
-button:active {
-    transform: scale(1);
+@media (max-width: 768px) {
+    #mapContainer {
+        height: 60vh;
+    }
 }
 
-input:focus, button:focus {
-    outline: none;
-    border-color: #008cba;
 }
-
-#flight-info, #cheap-flights-results, #ticket-info, #air
