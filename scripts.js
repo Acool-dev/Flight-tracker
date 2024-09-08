@@ -1,21 +1,24 @@
 const aviationApiKey = "bd33b4fad6cda564c39814354d804c06";
 const flightApiKey = "66dcddb5b9b8c754a45418beValidity"; 
 
+let viewer = new Cesium.Viewer('mapContainer', {
+    imageryProviderViewModel: Cesium.createOpenStreetMapImageryProviderViewModel(),
+    selectedImageryProviderViewModel: Cesium.createOpenStreetMapImageryProviderViewModel(),
+    selectedTerrainProviderViewModel: Cesium.createWorldTerrain(),
+    terrainProviderViewModel: Cesium.createWorldTerrain(),
+    shouldAnimate: true
+});
+
 function trackFlight() {
     const flightNumber = document.getElementById("flight-number").value;
-    
+
     if (!flightNumber) {
         alert("Please enter a valid flight number.");
         return;
     }
 
     fetch(`https://aviationion.com/api/v1/flights/${flightNumber}?apikey=${aviationApiKey}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Flight not found.");
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             const flightInfo = data.flight;
             document.getElementById("flight-info").innerHTML = `
@@ -26,6 +29,9 @@ function trackFlight() {
                 <p>Departure: ${flightInfo.departure.airport}</p>
                 <p>Arrival: ${flightInfo.arrival.airport}</p>
             `;
+            if (flightInfo.departure) {
+                updateMap(flightInfo.departure.latitude, flightInfo.departure.longitude);
+            }
         })
         .catch(err => {
             document.getElementById("flight-info").innerHTML = `<p>Error: ${err.message}</p>`;
@@ -43,12 +49,7 @@ function findCheapFlights() {
     }
 
     fetch(`https://api.flightapi.io/roundtrip/${origin}/${destination}/${departureDate}/1/0/0/Economy/USD?apikey=${flightApiKey}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("No cheap flights found.");
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             let results = '<h3>Available Flights</h3><ul>';
             data.forEach(flight => {
@@ -62,6 +63,7 @@ function findCheapFlights() {
         });
 }
 
+// Ticket Tracker Function
 function trackTicket() {
     const ticketNumber = document.getElementById("ticket-number").value;
 
@@ -71,12 +73,7 @@ function trackTicket() {
     }
 
     fetch(`https://aviationion.com/api/v1/tickets/${ticketNumber}?apikey=${aviationApiKey}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Ticket not found.");
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             const ticketInfo = data.ticket;
             document.getElementById("ticket-info").innerHTML = `
@@ -91,6 +88,7 @@ function trackTicket() {
             document.getElementById("ticket-info").innerHTML = `<p>Error: ${err.message}</p>`;
         });
 }
+
 function getAircraftInfo() {
     const aircraftReg = document.getElementById("aircraft-reg").value;
 
@@ -100,12 +98,7 @@ function getAircraftInfo() {
     }
 
     fetch(`https://aviationion.com/api/v1/aircraft/${aircraftReg}?apikey=${aviationApiKey}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Aircraft not found.");
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             const aircraftInfo = data.aircraft;
             document.getElementById("aircraft-details").innerHTML = `
@@ -119,4 +112,33 @@ function getAircraftInfo() {
         .catch(err => {
             document.getElementById("aircraft-details").innerHTML = `<p>Error: ${err.message}</p>`;
         });
+}
+
+function updateMap(latitude, longitude) {
+    viewer.entities.removeAll();
+    viewer.entities.add({
+        position: Cesium.Cartesian3.fromDegrees(longitude, latitude),
+        model: {
+            uri: 'path/to/your/plane/model.glb',
+            minimumPixelSize: 64
+        },
+        label: {
+            text: 'Flight Location',
+            font: '12px Arial',
+            fillColor: Cesium.Color.YELLOW
+        }
+    });
+
+    viewer.camera.setView({
+        destination: Cesium.Cartesian3.fromDegrees(longitude, latitude, 10000)
+    });
+}
+
+function toggle3D() {
+    const is3D = document.getElementById("toggle-3d").checked;
+    if (is3D) {
+        viewer.scene.mode = Cesium.SceneMode.SCENE3D;
+    } else {
+        viewer.scene.mode = Cesium.SceneMode.SCENE2D;
+    }
 }
