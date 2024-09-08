@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flight Tracker, Cheap Flights, Ticket & Aircraft Info</title>
+    <title>Ultimate Flight Tracker App</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.104/Build/Cesium/Cesium.js"></script>
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.104/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
 </head>
 <body>
-
     <header>
-        <h1>Flight Information Center</h1>
+        <h1>Ultimate Flight Tracker App</h1>
     </header>
 
     <section>
@@ -42,16 +43,19 @@
         <div id="aircraft-details"></div>
     </section>
 
+    <section>
+        <h2>3D Map of Nearby Planes</h2>
+        <label>
+            <input type="checkbox" id="toggle-3d" onclick="toggle3D()"> View in 3D
+        </label>
+        <div id="mapContainer"></div>
+    </section>
+
     <footer>
-        <p>Flight Information Center &copy; 2024</p>
+        <p>Ultimate Flight Tracker App &copy; 2024</p>
     </footer>
 
     <script src="scripts.js"></script>
 </body>
 </html>
 
-    <footer>
-        <p>&copy; 2024 Flight Tracker. All rights reserved.</p>
-    </footer>
-</body>
-</html>
